@@ -12,3 +12,15 @@ Flutter Hello world project (flutter initial project created using `flutter crea
 
 ## Lesson 2
 Using Drawer Navigation, organizing code using functions and inline styling text using RichText and TextSpan widgets.
+
+## Lesson 3
+Using various types of buttons in flutter
+- FlatButton
+- RaisedButton
+- RaisedButton.icon
+- FlatButton.icon
+- MaterialButton
+- IconButton
+- FloatingActionButton
+
+
