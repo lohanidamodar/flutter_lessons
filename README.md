@@ -29,5 +29,6 @@ Using containers and its various properties
 - Container padding
 - container decoration with gradients
 - container with background colors
+- container with decoration image (background image)
 - and much more
 - [Read more about containers here](https://flutteropen.gitbook.io/ebook/flutter-widgets-01-container)

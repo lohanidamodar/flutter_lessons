@@ -39,6 +39,23 @@ class Home extends StatelessWidget {
           ),
           SizedBox(height: 10.0,),
           Container(
+            height: 100,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/b3.jpg'),
+                fit: BoxFit.cover
+              )
+            ),
+            child: Center( 
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16.0,vertical: 5.0),
+                color: Colors.black87,
+                child: Text('Container with background image', style: textStyle)
+              ),
+            ),
+          ),
+          SizedBox(height: 10.0,),
+          Container(
             padding: EdgeInsets.all(16.0),
             color: Colors.pink,
             child: Text("""
