@@ -87,7 +87,7 @@ class ButtonsPage extends StatelessWidget {
           ),
           FloatingActionButton(
             child: Icon(Icons.dashboard),
-            backgroundColor: Colors.indigoAccent,
+            backgroundColor: Colors.green,
             onPressed: (){
               print("floating action button 2 pressed");
             },
