@@ -24,3 +24,10 @@ Using various types of buttons in flutter
 - FloatingActionButton
 
 
+## Lesson 4
+Using containers and its various properties
+- Container padding
+- container decoration with gradients
+- container with background colors
+- and much more
+- [Read more about containers here](https://flutteropen.gitbook.io/ebook/flutter-widgets-01-container)
