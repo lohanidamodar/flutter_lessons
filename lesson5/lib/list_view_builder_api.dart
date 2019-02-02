@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:listview/item_details.dart';
+
 class ListViewBuilderApi extends StatelessWidget {
 
   Future<List> getUsers() async {
@@ -25,6 +27,9 @@ class ListViewBuilderApi extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               var user = users[index];
               return ListTile(
+                onTap: ()=>Navigator.push(context, MaterialPageRoute(
+                  builder: (_) => ItemDetails(user:user)
+                )),
                 isThreeLine: true,
                 title: Text(user["name"]),
                 subtitle: Column(

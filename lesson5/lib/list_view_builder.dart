@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:listview/item_details.dart';
 
 class ListViewBuilder extends StatelessWidget {
   @override
@@ -12,6 +13,9 @@ class ListViewBuilder extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           var user = users[index];
           return ListTile(
+            onTap: ()=>Navigator.push(context, MaterialPageRoute(
+              builder: (_) => ItemDetails(user:user)
+            )),
             isThreeLine: true,
             title: Text(user["name"]),
             subtitle: Column(
