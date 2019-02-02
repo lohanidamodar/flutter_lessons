@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:listview/list_view_builder.dart';
+import 'package:listview/list_view_builder_api.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
       routes: {
         "builder" : (_)=>ListViewBuilder(),
+        "builder_api" : (_)=>ListViewBuilderApi(),
       },
     );
   }
@@ -34,7 +36,7 @@ class HomePage extends StatelessWidget {
           ),
           ListTile(
             title: Text("ListView.builder with data from API"),
-            onTap: () => Navigator.pushNamed(context, 'builder'),
+            onTap: () => Navigator.pushNamed(context, 'builder_api'),
           ),
         ],
       ),
