@@ -32,3 +32,10 @@ Using containers and its various properties
 - container with decoration image (background image)
 - and much more
 - [Read more about containers here](https://flutteropen.gitbook.io/ebook/flutter-widgets-01-container)
+
+## Lesson 5
+Various ways of using listviews, using listview to make master detail views
+- Using simple `ListView` with children like using Column widget
+- Using `ListView.builder` to show the list of static data
+- Using `ListView.builder` to show the list of data fetched from API using http library
+- Passing data from listview to detail view to show detail on click the list item
