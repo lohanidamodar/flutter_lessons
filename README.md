@@ -39,3 +39,9 @@ Various ways of using listviews, using listview to make master detail views
 - Using `ListView.builder` to show the list of static data
 - Using `ListView.builder` to show the list of data fetched from API using http library
 - Passing data from listview to detail view to show detail on click the list item
+
+## Lesson 6
+A simple stateful widget, updating UI at runtime using setState() function inside stateful widget.
+- basic structure of stateful widget
+- showing and hiding widget based on state
+- updating textfield text change in realtime
