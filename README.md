@@ -45,3 +45,6 @@ A simple stateful widget, updating UI at runtime using setState() function insid
 - basic structure of stateful widget
 - showing and hiding widget based on state
 - updating textfield text change in realtime
+
+## Lesson 7
+Showing Snackbar and Alert dialog - Two most common widgets to display messages and errors.
