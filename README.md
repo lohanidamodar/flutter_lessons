@@ -48,3 +48,6 @@ A simple stateful widget, updating UI at runtime using setState() function insid
 
 ## Lesson 7
 Showing Snackbar and Alert dialog - Two most common widgets to display messages and errors.
+
+## Lesson 8
+In this lesson you will learn how to make HTTP calls and display result using future builder
