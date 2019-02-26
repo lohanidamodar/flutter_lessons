@@ -51,3 +51,9 @@ Showing Snackbar and Alert dialog - Two most common widgets to display messages 
 
 ## Lesson 8
 In this lesson you will learn how to make HTTP calls and display result using future builder
+
+## Lesson 9
+- In this lesson you will learn to integrate plugin to access native feature
+- You will add `image_picker` plugin as dependency
+- You will use the `image_picker` plugin to access camera
+- You will use the `image_picker` plugin to pick image from gallery
