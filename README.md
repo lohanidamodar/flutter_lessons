@@ -57,3 +57,9 @@ In this lesson you will learn how to make HTTP calls and display result using fu
 - You will add `image_picker` plugin as dependency
 - You will use the `image_picker` plugin to access camera
 - You will use the `image_picker` plugin to pick image from gallery
+
+## Lesson 10
+In this lesson you will learn to 
+- Lift state up
+- Send Function as parameter
+- Change state of parent widget from child widget
