@@ -63,3 +63,9 @@ In this lesson you will learn to
 - Lift state up
 - Send Function as parameter
 - Change state of parent widget from child widget
+
+## Lesson 11
+In this lesson you will learn to
+- Use shared preference library to save app data
+- Use dart convert library to convert json to string and back
+- Load data from shared preference and display on your app
