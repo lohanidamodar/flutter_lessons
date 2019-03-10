@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../resources/db_provider.dart';
+import '../../models/item_model.dart';
 
 class AddPage extends StatefulWidget {
-  final Function add;
-  AddPage(this.add);
   @override
   _AddPageState createState() => _AddPageState();
 }
@@ -156,11 +156,12 @@ class _AddPageState extends State<AddPage> {
             icon: Icon(Icons.save),
             label: Text("Save"),
             color: Colors.blue,
-            onPressed: () {
+            onPressed: () async {
               if (title == null || description == null || _image == null) {
                 return;
               }
-              widget.add(title, description, _image);
+              ItemModel item =ItemModel(title: title,description: description,image: _image.path);
+              await DbProvider().addItem(item);
               Navigator.pop(context);
             },
           ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
-import './home.dart';
+import '../../models/item_model.dart';
+
 class DetailPage extends StatelessWidget {
-  final Map item;
+  final ItemModel item;
   final Function onDelete;
   const DetailPage({Key key, this.item, this.onDelete}) : super(key: key);
    
@@ -12,7 +13,7 @@ class DetailPage extends StatelessWidget {
       backgroundColor: Colors.cyanAccent,
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
-        title: Text(item["title"]),
+        title: Text(item.title),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.delete),
           onPressed: ()=>onDelete(item),)
@@ -29,13 +30,13 @@ class DetailPage extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: FileImage(File(item["img"]),)
+                  image: FileImage(File(item.image),)
                 )
               ),
             ),
-            Text(item["title"], style: Theme.of(context).textTheme.display1,),
+            Text(item.title, style: Theme.of(context).textTheme.display1,),
             SizedBox(height: 20.0,),
-            Text(item["description"]),
+            Text(item.description),
             SizedBox(height: 20.0,),
             
           ],

@@ -1,9 +1,9 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import './add.dart';
 import './detail.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../../resources/db_provider.dart';
+import '../../models/item_model.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -16,41 +16,10 @@ class _HomePageState extends State<HomePage> {
 
   void initState() {
     super.initState();
-    getItems();
   }
 
-  getItems() async {
-    final sp = await SharedPreferences.getInstance();
-    var itemString = sp.getString('items');
-    if (itemString == null) {
-      print("No Item found");
-      setState(() {
-        items = [];
-      });
-      await saveItems(items);
-    } else {
-      setState(() {
-        items = json.decode(itemString);
-      });
-    }
-  }
-
-  saveItems(items) async {
-    final sp = await SharedPreferences.getInstance();
-    await sp.setString('items', json.encode(items));
-    print("Saved Shared preference");
-    print(items);
-  }
-
-  addItem1(String title, String description, File image) {
-    setState(() {
-      items.add({
-        "title": title,
-        "description": description,
-        "img": image.path,
-      });
-      saveItems(items);
-    });
+  Future<List> getItems() async {
+    return DbProvider().fetchItems();
   }
 
   @override
@@ -61,47 +30,56 @@ class _HomePageState extends State<HomePage> {
         leading: Icon(Icons.home),
         backgroundColor: Colors.blueAccent,
       ),
-      body: ListView.builder(
-        physics: BouncingScrollPhysics(),
-        itemCount: items.length,
-        itemBuilder: (BuildContext context, int index) {
-          var item = items[index];
-          return Column(
-            children: <Widget>[
-              ListTile(
-                onTap: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => DetailPage(item: item, onDelete: _delete,))),
-                isThreeLine: true,
-                title: Text(item["title"]),
-                trailing: IconButton(
-                  icon: Icon(Icons.delete),
-                  onPressed: ()=>_delete(item),
-                ),
-                leading: CircleAvatar(
-                  backgroundImage: FileImage(
-                    File(item["img"]),
-                  ),
-                  radius: 34,
-                ),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(item["description"]),
-                    SizedBox(
-                      height: 40,
+      body: FutureBuilder(
+        future: getItems(),
+        builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+          if(!snapshot.hasData) return Center(child: CircularProgressIndicator(),);
+          if(snapshot.hasError) return Center(child: Text("There was an error ${snapshot.error}" ),);
+          List items = snapshot.data;
+
+          return ListView.builder(
+            physics: BouncingScrollPhysics(),
+            itemCount: items.length,
+            itemBuilder: (BuildContext context, int index) {
+              ItemModel item = ItemModel.fromMap(items[index]);
+              return Column(
+                children: <Widget>[
+                  ListTile(
+                    onTap: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => DetailPage(item: item, onDelete: _delete,))),
+                    isThreeLine: true,
+                    title: Text(item.title),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: ()=>_delete(item),
                     ),
-                  ],
-                ),
-              
-              ),
-              Divider(),
-            ],
+                    leading: CircleAvatar(
+                      backgroundImage: FileImage(
+                        File(item.image),
+                      ),
+                      radius: 34,
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(item.description),
+                        SizedBox(
+                          height: 40,
+                        ),
+                      ],
+                    ),
+                  
+                  ),
+                  Divider(),
+                ],
+              );
+            },
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(
-            context, MaterialPageRoute(builder: (_) => AddPage(addItem1))),
+            context, MaterialPageRoute(builder: (_) => AddPage())),
         tooltip: "Add Item",
         child: Icon(Icons.add),
       ),
@@ -109,7 +87,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _delete(Map item) {
+  void _delete(ItemModel item) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -137,11 +115,10 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void removeItem(Map item) {
+  void removeItem(ItemModel item) {
     setState(() { 
-      items.remove(item);
+      DbProvider().deleteItem(item.id);
     });
-    saveItems(items);
   }
 
 }
