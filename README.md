@@ -69,3 +69,10 @@ In this lesson you will learn to
 - Use shared preference library to save app data
 - Use dart convert library to convert json to string and back
 - Load data from shared preference and display on your app
+
+## Lesson 12
+In this lesson you will learn to
+- Use http client to make http call
+- Parse JSON result into map
+- Use user defined data type to hold json objects returned
+- Display the return result in the listview by using future builder
