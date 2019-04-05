@@ -1,4 +1,4 @@
-package com.example.app4;
+package com.popupbits.iremember;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
